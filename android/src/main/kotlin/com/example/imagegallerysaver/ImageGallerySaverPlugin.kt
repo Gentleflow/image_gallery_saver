@@ -59,11 +59,11 @@ class ImageGallerySaverPlugin(private val registrar: Registrar): MethodCallHandl
 
   private fun saveImageToGallery(bmp: Bitmap, quality: Int, name: String?): HashMap<String, Any?> {
     val context = registrar.activeContext().applicationContext
-    val file = generateFile("jpg", name = name)
+    val file = generateFile("png", name = name)
     return try {
       val fos = FileOutputStream(file)
       println("ImageGallerySaverPlugin $quality")
-      bmp.compress(Bitmap.CompressFormat.JPEG, quality, fos)
+      bmp.compress(Bitmap.CompressFormat.PNG, quality, fos)
       fos.flush()
       fos.close()
       val uri = Uri.fromFile(file)
